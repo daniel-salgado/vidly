@@ -38,22 +38,44 @@ namespace Vidly.Controllers
         public ActionResult Edit(int id)
         {
 
-            return Content("id="+id);
+            return Content("id=" + id);
         }
 
         //Movies
-        public ActionResult Index(int? pageIndex,string sortBy)
+        //public ActionResult Index(int? pageIndex,string sortBy)
+        //{
+
+
+        //    if (!pageIndex.HasValue)
+        //        pageIndex = 1;
+
+
+        //    if (String.IsNullOrWhiteSpace(sortBy))
+        //        sortBy = "Name";
+
+        //    return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+
+        //}
+
+        //Movies
+        public ActionResult Index()
         {
 
+            var movies = getMovies();
 
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
+            return View(movies);
 
+        }
 
-            if (String.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
+        private IEnumerable<Movie> getMovies()
+        {
+            List<Movie> movies = new List<Movie>
+            {
+                new Movie{Id=1,Name="Sherk"},
+                new Movie{Id=2,Name="Wall-e"}
+            };
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            return movies;
 
         }
 
